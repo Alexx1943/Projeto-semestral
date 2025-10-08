@@ -27,7 +27,4 @@ public class Cliente {
     @Column
     private String cpf;
 
-    @Column
-    private Funcionario funcionario;
-
 }

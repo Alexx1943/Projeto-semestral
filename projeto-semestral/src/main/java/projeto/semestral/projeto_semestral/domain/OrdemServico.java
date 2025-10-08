@@ -24,10 +24,4 @@ public class OrdemServico {
 
     @Column
     private Double valorServico;
-
-    @Column
-    private Funcionario funcionario;
-
-    @Column
-    private Cliente cliente;
 }

@@ -3,27 +3,24 @@ package projeto.semestral.projeto_semestral.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-
-@With
 @Setter
 @Getter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
-@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Funcionario {
-
+@Entity
+public class ClienteOrdemServico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column
-    private String name;
+    @ManyToOne(optional = false)
+    private Cliente cliente;
 
-    @Column
-    private String cpf;
+    @ManyToOne(optional = false)
+    private OrdemServico ordemServico;
 }
