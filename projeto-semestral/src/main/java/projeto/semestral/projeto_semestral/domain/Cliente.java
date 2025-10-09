@@ -2,6 +2,7 @@ package projeto.semestral.projeto_semestral.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import projeto.semestral.projeto_semestral.domain.enumeracao.ServicosDisponiveis;
 
 
 @With
@@ -15,7 +16,6 @@ import lombok.*;
 @AllArgsConstructor
 public class Cliente {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
@@ -26,5 +26,4 @@ public class Cliente {
 
     @Column
     private String cpf;
-
 }
