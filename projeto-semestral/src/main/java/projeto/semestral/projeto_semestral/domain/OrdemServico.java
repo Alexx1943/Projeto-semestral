@@ -1,10 +1,11 @@
 package projeto.semestral.projeto_semestral.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
-import projeto.semestral.projeto_semestral.domain.enumeracao.ServicosDisponiveis;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @With
 @Setter
@@ -22,8 +23,8 @@ public class OrdemServico {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @ManyToOne(optional = false)
-    private Funcionario funcionario;
+//    @ManyToOne(optional = false)
+//    private Funcionario funcionario;
 
     @ManyToOne(optional = false)
     private Cliente cliente;
@@ -31,17 +32,21 @@ public class OrdemServico {
     @Column
     private String descricao;
 
+//    @Column
+//    private Double valorServico;
+
+    @Transient
+    private List<TipoServico> servicos;
+
+    @OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL)
+    private List<OrdemServicoTipoServico> ordemServicoTipoServicos;
+
     @Column
-    private Double valorServico;
-
-    @Enumerated(EnumType.STRING)
-    private ServicosDisponiveis servicosDisponiveis;
-
-
-    @Column(updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime dataCriacao;
 
-    @Column(updatable = true)
+    @Column
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime dataAlteracao;
 
 }

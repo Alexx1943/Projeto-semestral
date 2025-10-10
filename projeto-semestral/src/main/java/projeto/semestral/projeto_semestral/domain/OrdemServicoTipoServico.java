@@ -1,8 +1,8 @@
 package projeto.semestral.projeto_semestral.domain;
 
+
 import jakarta.persistence.*;
 import lombok.*;
-
 
 @With
 @Setter
@@ -13,16 +13,16 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente {
+public class OrdemServicoTipoServico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column
-    private String name;
+    @ManyToOne(optional = false)
+    private OrdemServico ordemServico;
 
-    @Column
-    private String cpf;
+    @ManyToOne(optional = false)
+    private TipoServico tipoServico;
 }
