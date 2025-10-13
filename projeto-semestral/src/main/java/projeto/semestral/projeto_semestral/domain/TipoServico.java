@@ -1,6 +1,7 @@
 package projeto.semestral.projeto_semestral.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,11 @@ public class TipoServico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ordem_servico_id")
+    @JsonBackReference
+    private OrdemServico ordemServico;
 
     @Column
     private String servico;

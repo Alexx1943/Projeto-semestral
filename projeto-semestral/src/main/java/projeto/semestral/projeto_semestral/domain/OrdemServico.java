@@ -1,10 +1,12 @@
 package projeto.semestral.projeto_semestral.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @With
@@ -23,23 +25,18 @@ public class OrdemServico {
     @EqualsAndHashCode.Include
     private Long id;
 
-//    @ManyToOne(optional = false)
-//    private Funcionario funcionario;
-
     @ManyToOne(optional = false)
     private Cliente cliente;
 
     @Column
     private String descricao;
 
-//    @Column
-//    private Double valorServico;
 
-    @Transient
-    private List<TipoServico> servicos;
+    @OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<TipoServico> servicos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL)
-    private List<OrdemServicoTipoServico> ordemServicoTipoServicos;
+
 
     @Column
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")

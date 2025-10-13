@@ -27,12 +27,16 @@ public class OrdemServicoService {
     }
 
     public OrdemServico save(OrdemServico ordemServico) {
-
         ordemServico.setDataCriacao(LocalDateTime.now());
         ordemServico.setDataAlteracao(LocalDateTime.now());
 
+        if (ordemServico.getServicos() == null) {
+            ordemServico.getServicos().forEach(s -> s.setOrdemServico(ordemServico));
+        }
+
         return repository.save(ordemServico);
     }
+
 
     public OrdemServico update(OrdemServico ordemServico) {
 
